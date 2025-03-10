@@ -5,7 +5,8 @@ document.getElementById("btnAdd").addEventListener("click", function () {
       document.getElementById("box-container").appendChild(newItem); 
         document.getElementById("text").value = "";
        localStorage.setItem("val",document.getElementById("box-container").innerHTML);
-});
+        localStorage="";
+    });
 const savedContent = localStorage.getItem("val");
 document.getElementById("box-container").innerHTML=savedContent;
 
@@ -16,3 +17,25 @@ document.getElementById("btnRemove").addEventListener("click", function () {
         boxContainer.removeChild(boxContainer.lastChild);
     }
 });
+
+
+
+
+
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data); 
+        if ( data) {
+            let add = document.createElement("p");
+            add.innerText = data.title;
+            document.getElementById("box-container").appendChild(add);
+             
+        }else{
+            console.error("error");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+
